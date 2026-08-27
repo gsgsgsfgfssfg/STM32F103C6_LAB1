@@ -47,7 +47,7 @@ typedef enum {
 
 /* USER CODE BEGIN PV */
 TrafficState_TypeDef current_state1 = STATE_GREEN, current_state2 = STATE_RED;
-unsigned long counter1 = 0, counter2 = 0;
+unsigned long counter1 = 3000, counter2 = 5000;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -99,28 +99,28 @@ int main(void)
   while (1)
   {
 	  HAL_Delay(10);
-	  counter1+=10; counter2+=10;
+	  counter1-=10; counter2-=10;
 	  switch(current_state1){
 	  	  case STATE_GREEN:
-	  		  if (counter1 >= 3000){
+	  		  if (counter1 <= 0){
 	  			  current_state1 = STATE_YELLOW;
-	  			  counter1 = 0;
+	  			  counter1 = 2000;
 	  			  HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, GPIO_PIN_SET);
 	  			  HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, GPIO_PIN_RESET);
 	  		  }
 	  		  break;
 	  	  case STATE_YELLOW:
-	  		  if (counter1 >= 2000){
+	  		  if (counter1 <= 0){
 	  			  current_state1 = STATE_RED;
-	  			  counter1 = 0;
+	  			  counter1 = 5000;
 	  			  HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, GPIO_PIN_SET);
 	  			  HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, GPIO_PIN_RESET);
 	  		  }
 	  		  break;
 	  	  case STATE_RED:
-	  		  if (counter1 >= 5000){
+	  		  if (counter1 <= 0){
 	  			  current_state1 = STATE_GREEN;
-	  			  counter1 = 0;
+	  			  counter1 = 3000;
 	  			  HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, GPIO_PIN_SET);
 	  			  HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, GPIO_PIN_RESET);
 	  		  }
@@ -129,25 +129,25 @@ int main(void)
 
 	  switch(current_state2){
 	  	  case STATE_GREEN:
-	  		  if (counter2 >= 3000){
+	  		  if (counter2 <= 0){
 	  			  current_state2 = STATE_YELLOW;
-	  			  counter2 = 0;
+	  			  counter2 = 2000;
 	  			  HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, GPIO_PIN_SET);
 	  			  HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, GPIO_PIN_RESET);
 	  		  }
 	  		  break;
 	  	  case STATE_YELLOW:
-	  		  if (counter2 >= 2000){
+	  		  if (counter2 <= 0){
 	  			  current_state2 = STATE_RED;
-	  			  counter2 = 0;
+	  			  counter2 = 5000;
 	  			  HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, GPIO_PIN_SET);
 	  			  HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, GPIO_PIN_RESET);
 	  		  }
 	  		  break;
 	  	  case STATE_RED:
-	  		  if (counter2 >= 5000){
+	  		  if (counter2 <= 0){
 	  			  current_state2 = STATE_GREEN;
-	  			  counter2 = 0;
+	  			  counter2 = 3000;
 	  			  HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, GPIO_PIN_SET);
 	  			  HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, GPIO_PIN_RESET);
 	  		  }
