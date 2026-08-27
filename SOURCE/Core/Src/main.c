@@ -47,7 +47,7 @@ typedef enum {
 
 /* USER CODE BEGIN PV */
 TrafficState_TypeDef current_state1 = STATE_GREEN, current_state2 = STATE_RED;
-unsigned long counter1 = 9000, counter2 = 5000;
+unsigned long counter1 = 3000, counter2 = 5000;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,10 +100,9 @@ int main(void)
   while (1)
   {
 	  if (counter1 % 1000 == 0) display7SEG(counter1 / 1000);
-	  if (counter1 <= 0) counter1 = 10000;
 	  HAL_Delay(10);
-	  counter1-=10; //counter2-=10;
-	  /*switch(current_state1){
+	  counter1-=10; counter2-=10;
+	  switch(current_state1){
 	  	  case STATE_GREEN:
 	  		  if (counter1 <= 0){
 	  			  current_state1 = STATE_YELLOW;
@@ -155,7 +154,7 @@ int main(void)
 	  			  HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, GPIO_PIN_RESET);
 	  		  }
 	  		  break;
-	  }*/
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
