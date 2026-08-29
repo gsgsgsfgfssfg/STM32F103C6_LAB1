@@ -50,6 +50,7 @@ int hour = 0;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 void numberdisplay(int num);
+void clearAllClock();
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -98,9 +99,7 @@ int main(void)
 	  HAL_Delay(10);
 	  counter+=10;
 	  if (counter >= 1000) {
-		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0_Pin|GPIO_PIN_1_Pin|GPIO_PIN_2_Pin|GPIO_PIN_3_Pin|GPIO_PIN_4_Pin
-		                            |GPIO_PIN_5_Pin|GPIO_PIN_6_Pin|GPIO_PIN_7_Pin|GPIO_PIN_8_Pin
-		                            |GPIO_PIN_9_Pin|GPIO_PIN_10_Pin|GPIO_PIN_11_Pin, GPIO_PIN_SET);
+		  clearAllClock();
 		  hour++;
 		  counter = 0;
 		  if (hour >= 12) hour = 0;
@@ -220,6 +219,12 @@ void numberdisplay(int num){
 		default:
 			break;
 	}
+}
+
+void clearAllClock(){
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0_Pin|GPIO_PIN_1_Pin|GPIO_PIN_2_Pin|GPIO_PIN_3_Pin|GPIO_PIN_4_Pin
+			                            |GPIO_PIN_5_Pin|GPIO_PIN_6_Pin|GPIO_PIN_7_Pin|GPIO_PIN_8_Pin
+			                            |GPIO_PIN_9_Pin|GPIO_PIN_10_Pin|GPIO_PIN_11_Pin, GPIO_PIN_SET);
 }
 /* USER CODE END 4 */
 
