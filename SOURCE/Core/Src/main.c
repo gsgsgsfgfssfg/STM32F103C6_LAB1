@@ -43,7 +43,7 @@
 
 /* USER CODE BEGIN PV */
 unsigned long counter = 0;
-int hour = 0;
+int hour = 0, minute = 0, second = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,10 +100,22 @@ int main(void)
 	  HAL_Delay(10);
 	  counter+=10;
 	  if (counter >= 1000) {
+		  clearNumberOnClock(second/5);
+		  clearNumberOnClock(minute/5);
 		  clearNumberOnClock(hour);
-		  hour++;
+		  second++;
 		  counter = 0;
+		  if (second >= 60) {
+			  minute++;
+			  second = 0;
+		  }
+		  if (minute >= 60){
+			  hour++;
+			  minute = 0;
+		  }
 		  if (hour >= 12) hour = 0;
+		  setNumberOnClock(second/5);
+		  setNumberOnClock(minute/5);
 		  setNumberOnClock(hour);
 	  }
     /* USER CODE END WHILE */
