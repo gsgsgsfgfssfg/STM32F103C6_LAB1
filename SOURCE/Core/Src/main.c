@@ -49,7 +49,7 @@ int hour = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-void numberdisplay(int num);
+void setNumberOnClock(int num);
 void clearAllClock();
 /* USER CODE BEGIN PFP */
 
@@ -103,7 +103,7 @@ int main(void)
 		  hour++;
 		  counter = 0;
 		  if (hour >= 12) hour = 0;
-		  numberdisplay(hour);
+		  setNumberOnClock(hour);
 	  }
     /* USER CODE END WHILE */
 
@@ -178,7 +178,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void numberdisplay(int num){
+void setNumberOnClock(int num){
 	switch(num){
 		case 0:
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0_Pin, GPIO_PIN_RESET);
